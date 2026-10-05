@@ -1,0 +1,35 @@
+[
+  {
+    "id": "bells",
+    "name": "响亮钟声",
+    "file": "bells.wav",
+    "source": "https://commons.wikimedia.org/wiki/File:St._Paul%E2%80%99s_bell-ringing_practice.oga",
+    "download": "https://upload.wikimedia.org/wikipedia/commons/0/04/St._Paul%E2%80%99s_bell-ringing_practice.oga?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+    "author": "Tom Ackroyd",
+    "license": "CC0-1.0",
+    "modified": "excerpt, loudness normalised, mono PCM WAV, fades",
+    "sha256": "bfb8d34e4ba75d08f776e8bb54cce43e52227c99768f771b60ed94d01b5a7d46"
+  },
+  {
+    "id": "chime",
+    "name": "双音提示",
+    "file": "chime.wav",
+    "source": "https://commons.wikimedia.org/wiki/File:Airplane_Chime_Sound_Effect.ogg",
+    "download": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Airplane_Chime_Sound_Effect.ogg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+    "author": "Sharelk",
+    "license": "CC0-1.0",
+    "modified": "excerpt, loudness normalised, mono PCM WAV, fades",
+    "sha256": "4efef59943b868a7a751c3ef17347a816605eae0f0f9bca7f79da41c03aaf14f"
+  },
+  {
+    "id": "wind",
+    "name": "旋律风铃",
+    "file": "wind.wav",
+    "source": "https://commons.wikimedia.org/wiki/File:Windglockenspiel.Koshi.ogg",
+    "download": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Windglockenspiel.Koshi.ogg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+    "author": "Membeth",
+    "license": "CC0-1.0",
+    "modified": "excerpt, loudness normalised, mono PCM WAV, fades",
+    "sha256": "0466466b37a380c3b3106c443ae83f45425dcdaf6c600c9be938c222c4315bfd"
+  }
+]

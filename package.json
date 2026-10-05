@@ -1,0 +1,52 @@
+{
+  "name": "dsh-moonpet",
+  "version": "0.1.0",
+  "description": "MoonPet（月伴）— DeepSeek Harness 状态宠物与番茄钟：表情联动、工作时长记录、多语言字幕和休息提醒。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js"
+  },
+  "files": [
+    "lib",
+    "assets",
+    "docs",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/check-package.mjs",
+    "pack:release": "npm pack --ignore-scripts --pack-destination dist"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek",
+    "harness",
+    "desktop-pet",
+    "moonpet",
+    "状态宠物"
+  ],
+  "author": "Femad-6",
+  "repository": {
+    "url": "https://github.com/Femad-6/deepseek-moonpet.git",
+    "type": "git"
+  },
+  "homepage": "https://github.com/Femad-6/deepseek-moonpet#readme",
+  "bugs": {
+    "url": "https://github.com/Femad-6/deepseek-moonpet/issues"
+  }
+}

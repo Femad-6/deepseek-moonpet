@@ -1,0 +1,24 @@
+{
+  "image": {
+    "width": 1200,
+    "height": 700
+  },
+  "crop": {
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1
+  },
+  "inset": {
+    "left": 0.06,
+    "right": 0.06,
+    "top": 0.09,
+    "bottom": 0.07
+  },
+  "footer": {
+    "heightRatio": 0.42,
+    "maxWidthRatio": 0.9
+  },
+  "radius": 12,
+  "logoShare": 1
+}

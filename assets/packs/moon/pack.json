@@ -1,0 +1,6 @@
+{
+  "id": "moon",
+  "displayName": "月伴 · Moon",
+  "description": "MoonPet 默认角色：待机、思考和招手三种 AI 辅助生成立绘，无内置角色语音。",
+  "defaultSprite": "idle.png"
+}

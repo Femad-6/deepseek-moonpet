@@ -1,0 +1,12 @@
+{
+  "sprites": {
+    "idle": "idle.png",
+    "thinking": "thinking.png",
+    "working": "thinking.png",
+    "waiting": "wave.png",
+    "done": "wave.png",
+    "error": "thinking.png",
+    "stopped": "idle.png",
+    "offline": "idle.png"
+  }
+}

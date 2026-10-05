@@ -1,0 +1,12 @@
+node_modules/
+dist/
+work/
+*.tgz
+*.log
+.env
+.env.*
+.dsh*
+Thumbs.db
+Desktop.ini
+pet-browser-probe.html
+edge-probe-*/
