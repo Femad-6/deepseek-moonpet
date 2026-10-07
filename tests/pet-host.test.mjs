@@ -71,3 +71,27 @@ test('focus API persists settings, starts pauses resumes and rejects unsafe soun
   assert.equal(response.ok,false)
   assert.ok(fs.existsSync(path.join(home,'.dsh-moonpet-focus.json')))
 })
+
+test('selecting Whale switches real session events to its independent expressions', async () => {
+  await read('/dsh-moonpet/api/config', 'PUT', JSON.stringify({spritePack:'whale',petEnabled:true}))
+  const boot = await read('/dsh-moonpet/api/bootstrap')
+  assert.equal(boot.config.spritePack, 'whale')
+  for (const [type, data, status] of [
+    ['turn/start', {turn:2}, 'thinking'],
+    ['tool/call', {turn:2,callId:'whale-tool',name:'read_file',arguments:'{}'}, 'working'],
+    ['approval/asked', {id:'whale-approval'}, 'waiting'],
+    ['approval/decided', {id:'whale-approval',outcome:'allowed-once'}, 'working'],
+    ['tool/result', {turn:2,message:{toolCallId:'whale-tool',role:'tool',content:[]}}, 'thinking'],
+    ['turn/end', {turn:2,reason:{kind:'completed'}}, 'done'],
+    ['turn/start', {turn:3}, 'thinking'],
+    ['turn/end', {turn:3,reason:{kind:'error'}}, 'error'],
+    ['turn/start', {turn:4}, 'thinking'],
+    ['turn/end', {turn:4,reason:{kind:'aborted'}}, 'stopped'],
+  ]) {
+    send(type, data, 'whale-session')
+    const result = await read()
+    assert.equal(result.pet.status, status)
+    assert.equal(result.pet.sprite.file, `${status}.png`)
+    assert.ok(result.pet.sprite.url.includes('pack=whale'))
+  }
+})

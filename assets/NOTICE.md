@@ -1,5 +1,7 @@
 # Asset provenance
 
+`packs/whale/sprites/*.png` contains eight state illustrations generated on 2026-10-07 with the built-in ImageGen tool from a user-provided blue-haired ocean maid reference and the full-body illustration generated in this conversation. A generated 4-by-2 sprite sheet was mechanically separated into equal cells; the reference itself is not distributed. Character: 鲸蓝 · Whale. Prompt: preserve blue/cyan hair, whale clip and plush, blue-white frilled maid dress; full-body consistent-scale transparent sprites for gentle idle, thoughtful thinking, focused working, expectant raised-hand waiting, joyful victory done, worried error, calm stopped and sleepy offline. No upstream game assets or character voices were copied. Generated assets carry the same rights limitations described below.
+
 `packs/moon/sprites/idle.png`, `thinking.png`, and `wave.png` were AI-assisted generations made for this project, using a visual reference supplied by the project user. They are not extracted files from the upstream demo pack; the reference itself is not included. No claim is made that generated output has exclusive copyright or that reference material is owned by this project.
 
 `ui/dialog.png`, `dialog-blank.png`, `settings.png`, and `click.wav` were programmatically generated for MoonPet. They contain geometric UI shapes and a synthesized brief tone, not sampled game art or audio.

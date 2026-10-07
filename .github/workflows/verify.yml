@@ -19,5 +19,8 @@ jobs:
           package-manager-cache: false
       - run: npm test
       - run: npm run check
+      # 语音包生成器只用标准库，先查语法再跑自检，都不需要引擎或模型下载。
+      - run: python3 -m py_compile scripts/make-voice-pack.py
+      - run: python3 scripts/make-voice-pack.py --selftest
       - run: mkdir -p dist
       - run: npm run pack:release

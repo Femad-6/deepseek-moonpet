@@ -1,0 +1,7 @@
+{
+  "id": "whale",
+  "displayName": "鲸蓝 · Whale",
+  "description": "蓝白海洋主题角色，八种状态独立表情立绘，无内置角色语音。",
+  "defaultSprite": "idle.png",
+  "crop": { "x": 0, "y": 0, "w": 1, "h": 1 }
+}

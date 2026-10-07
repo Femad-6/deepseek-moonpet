@@ -10,3 +10,7 @@ Thumbs.db
 Desktop.ini
 pet-browser-probe.html
 edge-probe-*/
+# 语音包生成器的默认输出目录（生成物不进仓库）
+voice-packs/
+__pycache__/
+*.pyc

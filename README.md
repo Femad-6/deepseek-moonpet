@@ -15,7 +15,7 @@ MoonPet is a local companion plugin for DeepSeek Harness. It reacts to real sess
 - 多个聊天或子代理同时工作时聚合状态，等待审批优先；同时显示任务数量。
 - 拖动定位、立绘缩放、状态宠物开关，尊重系统减少动态效果设置。
 - 番茄钟：默认工作 25／休息 5 分钟，开始、暂停、继续、结束，记录今日与累计工作时间；到期弹出提醒并响铃，可选三种已下载的提醒音。
-- 可添加自己的角色包、台词和语音；默认包只有三张立绘，不附带角色语音。
+- 内置「月伴 · Moon」三张立绘及「鲸蓝 · Whale」八种状态表情；可添加自己的角色包、台词和语音，内置角色不附带语音。
 - 可选余额、token 和花费展示。花费依据内置历史费率估算，可自行覆盖；不替代供应商账单。
 
 状态变化静音。点击角色仍可播放你自己的语音；没有语音时显示余额页。动作是 CSS 呼吸、摆动和跳动，图片是静态立绘。
@@ -24,25 +24,41 @@ MoonPet is a local companion plugin for DeepSeek Harness. It reacts to real sess
 
 ## 安装
 
+**0.1.2 已公开发布到 [npm](https://www.npmjs.com/package/dsh-moonpet)**，包含鲸蓝角色包。npm 官方源与 `registry.npmmirror.com` 已同步此版本。
+
 需要已安装且支持组合包插件的 DeepSeek Harness Desktop 或 Web。状态宠物不要求 API key；余额功能可使用 Harness 中已有的 DeepSeek 凭据。
 
-1. 从 [最新 Release](https://github.com/Femad-6/deepseek-moonpet/releases/latest) 下载 `dsh-moonpet-0.1.0.tgz`。
-2. 在 Harness 的 **插件 → 添加插件** 中输入下载文件的绝对路径，完成安装并启用。
-3. 完全退出再打开 Harness。Windows 需要从系统托盘退出；关闭窗口通常只是隐藏。
+### 插件市场安装
 
-也可以在支持此命令的 Harness CLI 中按本地文件安装：
+在支持 npm 插件发现的市场中搜索 `dsh-moonpet`，确认版本为 **0.1.2** 或更新版本，安装并启用。如果没有搜索到，先重建市场目录；npm 发布、镜像同步和市场搜索索引更新可能存在延迟。
 
-```powershell
-dsh plugin --profile desktop add C:\Downloads\dsh-moonpet-0.1.0.tgz
-```
+### 按 npm 包名安装
 
-Web 用户使用 `--profile web`。**尚未发布 npm；不要用裸包名从 npm 安装。** 安装成功后，在宠物右上角的月亮按钮里可以调整位置、缩放和「状态宠物」开关。
-
-也可以在插件安装输入框中填写安装包链接：
+在 Harness 的 **插件 → 添加插件** 中输入：
 
 ```text
-https://github.com/Femad-6/deepseek-moonpet/releases/latest/download/dsh-moonpet-0.1.0.tgz
+dsh-moonpet@0.1.2
 ```
+
+也可以在支持此命令的 Harness CLI 中安装：
+
+```powershell
+dsh plugin --profile desktop add dsh-moonpet@0.1.2
+```
+
+Web 用户使用 `--profile web`。插件需要通过 Harness 的插件安装入口加载；普通项目中的 `npm install` 不会自动启用 Harness 插件。
+
+### 按安装包安装
+
+也可以在插件安装输入框中填写 npm 官方安装包链接：
+
+```text
+https://registry.npmjs.org/dsh-moonpet/-/dsh-moonpet-0.1.2.tgz
+```
+
+或者下载该安装包，在插件输入框中填写文件的绝对路径。本地构建安装包为 `dist/dsh-moonpet-0.1.2.tgz`；[GitHub Releases](https://github.com/Femad-6/deepseek-moonpet/releases) 也是下载入口，请以各 Release 实际提供的版本与文件为准。
+
+以上方式安装并启用后，完全退出再打开 Harness。Windows 需要从系统托盘退出；关闭窗口通常只是隐藏。安装成功后，在宠物右上角的月亮按钮里可以调整位置、缩放和「状态宠物」开关。
 
 ### 可选的中文／英文励志语音
 
@@ -50,9 +66,36 @@ Release 另提供 [moonpet-multilingual-voices.zip](https://github.com/Femad-6/d
 
 每个包有 12 句短语和完整中／英／日三语字幕。英文为 Microsoft Zira 美式女声，中文为 Microsoft Huihui 普通话女声，均为本地系统语音合成；不附带日文音频。字幕语言与发音可以独立选择。
 
+这两套系统语音是拼接式的 SAPI 语音，听感偏生硬。想换成自然的声音、或干脆克隆角色本音，用仓库里的生成器以开源模型重录即可（不需要改插件代码）：
+
+```powershell
+python scripts/make-voice-pack.py --engine cosyvoice --ref-audio D:\voice\moon-ref.wav --prompt-text "参考音频里说的那句话"
+```
+
+引擎对比、服务端启动方式、许可注意事项见 [语音包与开源语音引擎](docs/voices.md)。生成器只放在仓库里，不随安装包发布。
+
 旧版 `dsh-gal` 与 MoonPet 是两个独立插件；建议使用 MoonPet 时关闭旧插件，避免两个挂件同时出现。新插件不会自动读取或改写旧插件配置。
 
 ## 自定义角色
+
+### 内置鲸蓝角色
+
+安装 0.1.2 后，在月亮设置按钮 →「字幕与资源」→「立绘包」中选择 **鲸蓝 · Whale**。原默认角色继续保留，语音包可独立选择。
+
+| 状态 | 表情与动作 |
+|---|---|
+| 待机 idle | 微笑抱鲸鱼 |
+| 思考 thinking | 思索、手指靠近下巴 |
+| 工作 working | 专注、认真 |
+| 等待审批 waiting | 期待、举手提醒 |
+| 完成 done | 开心、胜利手势 |
+| 异常 error | 担忧、难过 |
+| 中断 stopped | 平静、放松 |
+| 离线 offline | 闭眼休息 |
+
+八张透明 PNG 使用一致画布，切换时保持布局稳定。表情为静态立绘，继续使用已有的轻微 CSS 动作。
+
+### 添加自己的角色包
 
 把自己的角色包放入：
 
@@ -106,4 +149,4 @@ npm run pack:release
 
 MoonPet 基于 [strawberry0321/dsh-gal](https://github.com/strawberry0321/dsh-gal) 的 MIT 代码开发，保留原作者版权声明。新增状态联动、独立命名空间、默认角色与发布验证。它是社区插件，不是 DeepSeek 或 OpenAI 官方产品。
 
-原仓库的示例角色、语音和 UI 素材未包含在本仓库或安装包内。当前三张角色图由 AI 工具根据使用者提供的视觉参考生成，UI 与点击音由程序生成。来源与许可记录见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。代码采用 [MIT](LICENSE)；素材的说明见 [素材记录](assets/NOTICE.md)。
+原仓库的示例角色、语音和 UI 素材未包含在本仓库或安装包内。内置角色图由 AI 工具根据使用者提供的视觉参考生成，UI 与点击音由程序生成。来源与许可记录见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。代码采用 [MIT](LICENSE)；素材的说明见 [素材记录](assets/NOTICE.md)。
