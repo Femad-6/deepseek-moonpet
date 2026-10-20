@@ -2,7 +2,7 @@
 
 **跟着 DeepSeek Harness 一起思考、工作和休息的状态宠物。**
 
-官方插件列表使用专属月牙小鲸鱼图标 `assets/icon.svg`，由 package.json 顶层 icon 字段声明。本地 link 安装修改后，正常退出并重启 DSH 可重新读取图标元数据。
+[npm](https://www.npmjs.com/package/dsh-moonpet) · [更新说明](docs/release.md) · [问题反馈](https://github.com/Femad-6/deepseek-moonpet/issues)
 
 MoonPet is a local companion plugin for DeepSeek Harness. It reacts to real session events with character sprites, subtle motion, and short status labels. It makes no model calls and never approves tools for you.
 
@@ -19,6 +19,8 @@ MoonPet is a local companion plugin for DeepSeek Harness. It reacts to real sess
 - 番茄钟：默认工作 25／休息 5 分钟，开始、暂停、继续、结束，记录今日与累计工作时间；到期弹出提醒并响铃，可选三种已下载的提醒音。
 - 内置「月伴 · Moon」三张立绘及「鲸蓝 · Whale」八种状态表情；可添加自己的角色包、台词和语音，内置角色不附带语音。
 - 可选余额、token 和花费展示。花费依据内置历史费率估算，可自行覆盖；不替代供应商账单。
+- 同时启用 Our Free Model 时，单独展示已有账号渠道的剩余额度；积分、Token、美元与 Gemini 配额窗口分别显示，查询失败时标注缓存。
+- 官方插件列表展示专属月牙小鲸鱼图标。
 
 状态变化静音。点击角色仍可播放你自己的语音；没有语音时显示余额页。动作是 CSS 呼吸、摆动和跳动，图片是静态立绘。
 
@@ -26,13 +28,13 @@ MoonPet is a local companion plugin for DeepSeek Harness. It reacts to real sess
 
 ## 安装
 
-当前版本：**0.1.3**。包含鲸蓝角色包、专属插件图标及 Our Free Model 渠道额度展示。发布入口：[npm](https://www.npmjs.com/package/dsh-moonpet)。
+当前版本：**[0.1.3](https://www.npmjs.com/package/dsh-moonpet/v/0.1.3)**，已公开发布到 npm，并设为 `latest`（2026-10-20 核验）。本次新增专属插件图标和 Our Free Model 渠道额度展示，继续提供月伴与鲸蓝角色包。源码见 [GitHub v0.1.3](https://github.com/Femad-6/deepseek-moonpet/tree/v0.1.3)。
 
 需要已安装且支持组合包插件的 DeepSeek Harness Desktop 或 Web。状态宠物不要求 API key；余额功能可使用 Harness 中已有的 DeepSeek 凭据。
 
 ### 插件市场安装
 
-在支持 npm 插件发现的市场中搜索 `dsh-moonpet`，确认版本为 **0.1.3** 或更新版本，安装并启用。如果没有搜索到，先重建市场目录；npm 发布、镜像同步和市场搜索索引更新可能存在延迟。
+在支持 npm 插件发现的市场中搜索 `dsh-moonpet`，确认版本为 **0.1.3** 或更新版本，安装并启用。如果没有搜索到，可刷新市场目录，或直接使用下方完整 npm 包名安装。市场索引可能未收录此包，npm 发布、镜像同步与市场目录更新也可能存在延迟。
 
 ### 按 npm 包名安装
 
@@ -58,7 +60,7 @@ Web 用户使用 `--profile web`。插件需要通过 Harness 的插件安装入
 https://registry.npmjs.org/dsh-moonpet/-/dsh-moonpet-0.1.3.tgz
 ```
 
-或者下载该安装包，在插件输入框中填写文件的绝对路径。本地构建安装包为 `dist/dsh-moonpet-0.1.3.tgz`；[GitHub Releases](https://github.com/Femad-6/deepseek-moonpet/releases) 也是下载入口，请以各 Release 实际提供的版本与文件为准。
+或者下载该安装包，在插件输入框中填写文件的绝对路径。本地打包文件名为 `dsh-moonpet-0.1.3.tgz`；[GitHub Releases](https://github.com/Femad-6/deepseek-moonpet/releases) 也是下载入口，请以各 Release 实际提供的版本与文件为准。
 
 以上方式安装并启用后，完全退出再打开 Harness。Windows 需要从系统托盘退出；关闭窗口通常只是隐藏。安装成功后，在宠物右上角的月亮按钮里可以调整位置、缩放和「状态宠物」开关。
 
