@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="MoonPet">
+  <defs>
+    <linearGradient id="night" x2="1" y2="1"><stop stop-color="#293659"/><stop offset="1" stop-color="#121c35"/></linearGradient>
+    <linearGradient id="moon" x2="0" y2="1"><stop stop-color="#fff0c2"/><stop offset="1" stop-color="#e9b96f"/></linearGradient>
+    <linearGradient id="whale" x2="0" y2="1"><stop stop-color="#a5e5ff"/><stop offset="1" stop-color="#5999de"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#9ca8ff" stop-opacity=".23"/><stop offset="1" stop-color="#9ca8ff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="54" fill="url(#night)"/>
+  <rect x="9" y="9" width="238" height="238" rx="53" fill="none" stroke="#c1ccff" stroke-opacity=".22" stroke-width="2"/>
+  <circle cx="127" cy="132" r="99" fill="url(#halo)"/>
+  <path d="M147 39a78 78 0 1 0 63 125 65 65 0 0 1-63-125Z" fill="url(#moon)"/>
+  <g aria-label="Whale companion sitting on the moon">
+    <!-- Tail peeks out behind the seated whale hoodie. -->
+    <path d="M139 149q15-9 17-23 9 11 5 21 11-3 18 5-14 10-30 6Z" fill="#6bb0e9"/>
+    <!-- Bent legs and little whale-blue boots hang over the crescent. -->
+    <path d="M114 158q7 8 19 6l5 21" fill="none" stroke="#d9edff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M128 157q12 5 24 4l7 17" fill="none" stroke="#b7d8f5" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M130 182q8-6 14-1l3 9q-2 5-9 4l-7-3Z" fill="#5c9fdb"/>
+    <path d="M151 176q7-6 13-1l6 8q-1 6-8 6l-9-4Z" fill="#76b9ef"/>
+    <!-- Small seated body, tummy and flipper sleeves. -->
+    <path d="M106 121q17-8 29 4l10 30q-2 14-24 12-20-2-19-16Z" fill="url(#whale)"/>
+    <path d="M112 131q10-4 17 4l5 20q-7 8-19 3Z" fill="#d9f1ff"/>
+    <path d="M105 126q-14 12-12 29 5 6 11 0l6-23" fill="#78b8eb"/>
+    <path d="M132 128q8 6 11 17l-12 6" fill="none" stroke="#91d2fa" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="132" cy="150" r="5" fill="#fff0dc"/>
+    <!-- Round whale hood with a fin, a tiny whale eye and a water spout. -->
+    <path d="M91 84q-13-1-17 9 8 7 20 2" fill="#69a9e3"/>
+    <path d="M119 70q8-9 16-5-1 10-10 15" fill="#8dccf7"/>
+    <path d="M115 72q-4-13 2-20m-2 20q6-10 15-9" fill="none" stroke="#9de2ff" stroke-width="4" stroke-linecap="round"/>
+    <path d="M86 101q-3-30 25-32 30-2 35 27 1 28-27 32-28 2-33-27Z" fill="url(#whale)"/>
+    <circle cx="96" cy="86" r="3.5" fill="#204164"/>
+    <circle cx="95" cy="85" r="1" fill="#fff"/>
+    <path d="M100 97q7-9 18-8 15 0 19 13-2 18-19 20-19-1-18-25Z" fill="#fff0dc"/>
+    <path d="M101 100q3-15 16-14 12 0 17 9-8-4-14-3l-4 6-4-5-6 7Z" fill="#507ab4"/>
+    <ellipse cx="109" cy="104" rx="2.5" ry="3.5" fill="#253952"/>
+    <ellipse cx="124" cy="104" rx="2.5" ry="3.5" fill="#253952"/>
+    <path d="M113 113q4 4 8 0" fill="none" stroke="#7c5462" stroke-width="2.5" stroke-linecap="round"/>
+    <ellipse cx="105" cy="112" rx="4" ry="2" fill="#efa9b7"/>
+    <ellipse cx="129" cy="112" rx="4" ry="2" fill="#efa9b7"/>
+  </g>
+  <path d="m190 49 5 13 13 5-13 5-5 13-5-13-13-5 13-5Z" fill="#fff0c2"/>
+  <circle cx="62" cy="62" r="4" fill="#c9d7ff"/>
+  <circle cx="209" cy="193" r="3" fill="#9ab8ed"/>
+</svg>

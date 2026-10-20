@@ -2,6 +2,8 @@
 
 **跟着 DeepSeek Harness 一起思考、工作和休息的状态宠物。**
 
+官方插件列表使用专属月牙小鲸鱼图标 `assets/icon.svg`，由 package.json 顶层 icon 字段声明。本地 link 安装修改后，正常退出并重启 DSH 可重新读取图标元数据。
+
 MoonPet is a local companion plugin for DeepSeek Harness. It reacts to real session events with character sprites, subtle motion, and short status labels. It makes no model calls and never approves tools for you.
 
 | 待机 | 思考 | 招手提醒 |
@@ -24,26 +26,26 @@ MoonPet is a local companion plugin for DeepSeek Harness. It reacts to real sess
 
 ## 安装
 
-**0.1.2 已公开发布到 [npm](https://www.npmjs.com/package/dsh-moonpet)**，包含鲸蓝角色包。npm 官方源与 `registry.npmmirror.com` 已同步此版本。
+当前版本：**0.1.3**。包含鲸蓝角色包、专属插件图标及 Our Free Model 渠道额度展示。发布入口：[npm](https://www.npmjs.com/package/dsh-moonpet)。
 
 需要已安装且支持组合包插件的 DeepSeek Harness Desktop 或 Web。状态宠物不要求 API key；余额功能可使用 Harness 中已有的 DeepSeek 凭据。
 
 ### 插件市场安装
 
-在支持 npm 插件发现的市场中搜索 `dsh-moonpet`，确认版本为 **0.1.2** 或更新版本，安装并启用。如果没有搜索到，先重建市场目录；npm 发布、镜像同步和市场搜索索引更新可能存在延迟。
+在支持 npm 插件发现的市场中搜索 `dsh-moonpet`，确认版本为 **0.1.3** 或更新版本，安装并启用。如果没有搜索到，先重建市场目录；npm 发布、镜像同步和市场搜索索引更新可能存在延迟。
 
 ### 按 npm 包名安装
 
 在 Harness 的 **插件 → 添加插件** 中输入：
 
 ```text
-dsh-moonpet@0.1.2
+dsh-moonpet@0.1.3
 ```
 
 也可以在支持此命令的 Harness CLI 中安装：
 
 ```powershell
-dsh plugin --profile desktop add dsh-moonpet@0.1.2
+dsh plugin --profile desktop add dsh-moonpet@0.1.3
 ```
 
 Web 用户使用 `--profile web`。插件需要通过 Harness 的插件安装入口加载；普通项目中的 `npm install` 不会自动启用 Harness 插件。
@@ -53,10 +55,10 @@ Web 用户使用 `--profile web`。插件需要通过 Harness 的插件安装入
 也可以在插件安装输入框中填写 npm 官方安装包链接：
 
 ```text
-https://registry.npmjs.org/dsh-moonpet/-/dsh-moonpet-0.1.2.tgz
+https://registry.npmjs.org/dsh-moonpet/-/dsh-moonpet-0.1.3.tgz
 ```
 
-或者下载该安装包，在插件输入框中填写文件的绝对路径。本地构建安装包为 `dist/dsh-moonpet-0.1.2.tgz`；[GitHub Releases](https://github.com/Femad-6/deepseek-moonpet/releases) 也是下载入口，请以各 Release 实际提供的版本与文件为准。
+或者下载该安装包，在插件输入框中填写文件的绝对路径。本地构建安装包为 `dist/dsh-moonpet-0.1.3.tgz`；[GitHub Releases](https://github.com/Femad-6/deepseek-moonpet/releases) 也是下载入口，请以各 Release 实际提供的版本与文件为准。
 
 以上方式安装并启用后，完全退出再打开 Harness。Windows 需要从系统托盘退出；关闭窗口通常只是隐藏。安装成功后，在宠物右上角的月亮按钮里可以调整位置、缩放和「状态宠物」开关。
 
@@ -80,7 +82,7 @@ python scripts/make-voice-pack.py --engine cosyvoice --ref-audio D:\voice\moon-r
 
 ### 内置鲸蓝角色
 
-安装 0.1.2 后，在月亮设置按钮 →「字幕与资源」→「立绘包」中选择 **鲸蓝 · Whale**。原默认角色继续保留，语音包可独立选择。
+安装 0.1.3 后，在月亮设置按钮 →「字幕与资源」→「立绘包」中选择 **鲸蓝 · Whale**。原默认角色继续保留，语音包可独立选择。
 
 | 状态 | 表情与动作 |
 |---|---|
@@ -131,6 +133,10 @@ python scripts/make-voice-pack.py --engine cosyvoice --ref-audio D:\voice\moon-r
 宠物联动只在本机观察 Harness 已加载聊天的事件，不上传聊天，不新增模型调用，不修改审批结果。状态不是“当前页面专属”，而是聚合已加载会话。通用等待输入、任意后台程序状态不在本版本范围内。
 
 配置和本地 usage 账本分别保存在 `~/.dsh/.dsh-moonpet.json` 与 `~/.dsh/.dsh-moonpet-usage.json`。余额功能会向 DeepSeek API 请求账户余额；配置有 Platform 凭据时，还会查询 Platform usage。详情见 [隐私说明](docs/privacy.md)。
+
+余额和今日已用始终显示你自己的 DeepSeek 账号数据。同时启用 Our Free Model 时，余额栏另行展示其已有账号渠道的剩余额度，每分钟在窗口可见时刷新。积分、Token、美元按渠道分别展示，Gemini 按配额窗口展示百分比，不跨单位或来源相加。匿名免费通道没有余额接口时显示「未提供额度」。查询失败保留上次结果并标注缓存；多渠道摘要过长时省略，打开宠物余额面板可查看完整内容。累计 Token 仍使用 MoonPet 的本地统计。
+
+额度查询通过宿主同源鉴权的 `/api/our-free-model/summary` 和 `/api/channel-pack` 接口，后者可能向渠道上游查询账号额度。MoonPet 不读取或保存渠道登录凭据，不自动登录、领取积分或发起模型调用。
 
 ## 开发与验证
 

@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 import { spawnSync } from 'node:child_process'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const required=['package.json','cordis.patch.yml','README.md','LICENSE','THIRD_PARTY_NOTICES.md','assets/NOTICE.md','lib/index.js','lib/client.js','lib/pet-state.js','assets/ui/dialog.png','assets/ui/dialog.json','assets/ui/dialog-blank.png','assets/ui/dialog-blank.json','assets/ui/settings.png','assets/ui/click.wav','assets/packs/moon/pack.json','assets/packs/moon/pet.json']
+const required=['package.json','cordis.patch.yml','README.md','LICENSE','THIRD_PARTY_NOTICES.md','assets/NOTICE.md','assets/icon.svg','lib/index.js','lib/client.js','lib/pet-state.js','assets/ui/dialog.png','assets/ui/dialog.json','assets/ui/dialog-blank.png','assets/ui/dialog-blank.json','assets/ui/settings.png','assets/ui/click.wav','assets/packs/moon/pack.json','assets/packs/moon/pet.json']
 required.push('assets/packs/whale/pack.json','assets/packs/whale/pet.json')
 for (const state of ['idle','thinking','working','waiting','done','error','stopped','offline']) {
   required.push(`assets/packs/whale/sprites/${state}.png`)

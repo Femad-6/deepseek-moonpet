@@ -15,16 +15,29 @@ fs.writeFileSync(path.join(pack, 'pet.json'), JSON.stringify({ sprites: { idle: 
 fs.writeFileSync(path.join(home, '.dsh-moonpet.json'), JSON.stringify({ spritePack: 'test', petEnabled: true }))
 const { apply } = await import('../lib/index.js')
 const routes = new Map(), listeners = new Map()
-apply({ webServer: { register(r) { routes.set(r.path, r.handler); return () => {} }, tapIndex() { return () => {} } }, credentials: { async resolve() { return null } }, on(name, fn) { listeners.set(name, fn); return () => {} }, effect(fn) { fn() } })
+let credentialReads = 0
+apply({ webServer: { register(r) { routes.set(r.path, r.handler); return () => {} }, tapIndex() { return () => {} } }, credentials: { async resolve() { credentialReads++; return null } }, on(name, fn) { listeners.set(name, fn); return () => {} }, effect(fn) { fn() } })
 const send = (type, data, id = 'a') => listeners.get('session/event')({ id }, { type, data })
 async function read(route = '/dsh-moonpet/api/turn', method = 'GET', body = '') {
   return new Promise((resolve, reject) => {
     const req = new Readable({ read() {} }); req.url = route; req.method = method; req.headers = {}
     const res = { writeHead(code) { this.code = code }, end(data) { resolve(JSON.parse(String(data))) } }
-    Promise.resolve(routes.get(route)(req, res)).catch(reject)
+    Promise.resolve(routes.get(route.split('?')[0])(req, res)).catch(reject)
     req.push(body || null); if (body) req.push(null)
   })
 }
+
+test('bootstrap and polling keep own account balance queries alongside the token ledger', async () => {
+  const before = credentialReads
+  for (const route of ['/dsh-moonpet/api/bootstrap?wallet=ofm', '/dsh-moonpet/api/state?wallet=ofm']) {
+    const data = await read(route)
+    assert.equal(data.ok, true)
+    assert.equal(data.balance.code, 'NO_KEY')
+    assert.ok(data.today)
+    assert.ok(data.ledger)
+  }
+  assert.ok(credentialReads > before)
+})
 test('Host exposes event-driven art, safe fallback, completion without token usage and opt-out', async () => {
   let result = await read()
   assert.equal(result.pet.status, 'idle')

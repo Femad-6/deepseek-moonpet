@@ -13,7 +13,7 @@ const read = rel => fs.readFileSync(path.join(root,rel), 'utf8')
 test('new package has its own namespace, MIT attribution and Chinese defaults', () => {
   const pkg = JSON.parse(read('package.json'))
   assert.equal(pkg.name, 'dsh-moonpet')
-  assert.equal(pkg.version, '0.1.2')
+  assert.equal(pkg.version, '0.1.3')
   assert.ok(read('cordis.patch.yml').includes('id: dsh-moonpet'))
   for (const name of fs.readdirSync(path.join(root,'lib'))) {
     assert.ok(!read(`lib/${name}`).includes('/dsh-gal'), name)
