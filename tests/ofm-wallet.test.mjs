@@ -77,16 +77,19 @@ test('failed refresh retains previous quota as stale and concurrent polling is c
 test('own account balance remains primary alongside escaped OFM quota and token total', () => {
   const start = source.indexOf('  function renderBadge()')
   const end = source.indexOf('  function renderCost()', start)
-  const state = { ofm: {}, balance: { ok: true, totalBalance: 22.81, currency: 'CNY' }, today: { amount: 1 }, ledger: { totalTokens: 123 } }
+  const state = { ofm: {}, balance: { ok: true, totalBalance: 22.81, currency: 'CNY' }, today: { amount: 1 }, ledger: { todayTokens: 45, totalTokens: 123 } }
   const context = vm.createContext({ state, badgeInner: {}, walletLine: {}, formatTokenCount: String,
     money: amount => `¥${amount.toFixed(2)}`, shorten: String,
     ofmWalletText: () => '<img> 10 积分', escapeHtml: text => String(text).replaceAll('<', '&lt;').replaceAll('>', '&gt;') })
   vm.runInContext(source.slice(start, end), context)
   context.renderWallet()
   assert.match(context.badgeInner.innerHTML, /Our Free Model/)
-  assert.match(context.badgeInner.innerHTML, /123/)
+  assert.match(context.badgeInner.innerHTML, /今日.*45.*token/)
+  assert.match(context.badgeInner.innerHTML, /累计.*123.*token/)
   assert.match(context.badgeInner.innerHTML, /余额.*¥22.81/)
   assert.match(context.walletLine.innerHTML, /余额.*¥22.81/)
+  assert.match(context.walletLine.innerHTML, /今日 Token.*45/)
+  assert.match(context.walletLine.innerHTML, /累计 Token.*123/)
   assert.match(context.walletLine.innerHTML, /&lt;img&gt;/)
   assert.ok(!context.badgeInner.innerHTML.includes('<img>'))
   state.balance = { ok: false, error: 'offline' }

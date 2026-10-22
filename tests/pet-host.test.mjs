@@ -32,7 +32,9 @@ test('bootstrap and polling keep own account balance queries alongside the token
   for (const route of ['/dsh-moonpet/api/bootstrap?wallet=ofm', '/dsh-moonpet/api/state?wallet=ofm']) {
     const data = await read(route)
     assert.equal(data.ok, true)
-    assert.equal(data.balance.code, 'NO_KEY')
+    assert.equal(data.balance.ok, true)
+    assert.equal(data.balance.totalBalance, 0)
+    assert.equal(data.balance.source, 'custom')
     assert.ok(data.today)
     assert.ok(data.ledger)
   }
@@ -107,4 +109,26 @@ test('selecting Whale switches real session events to its independent expression
     assert.equal(result.pet.sprite.file, `${status}.png`)
     assert.ok(result.pet.sprite.url.includes('pack=whale'))
   }
+})
+
+test('createUsageService reads signed-in DeepSeek account balance when DEEPSEEK_API_KEY is absent', async () => {
+  const { createUsageService } = await import('../lib/usage.js')
+  const usage = createUsageService({
+    credentials: { async resolve() { return null } },
+    deepseekAccount: {
+      async getBalance() {
+        return {
+          status: 'ready',
+          value: [{ currency: 'CNY', balance: '23.66' }],
+          bonusWallets: [{ currency: 'CNY', balance: '1.34' }],
+        }
+      },
+    },
+    usageFiles: [path.join(home, 'account-usage.json')],
+  })
+  const bal = await usage.getBalance()
+  assert.equal(bal.ok, true)
+  assert.equal(bal.source, 'account')
+  assert.equal(bal.currency, 'CNY')
+  assert.equal(bal.totalBalance, 25)
 })
