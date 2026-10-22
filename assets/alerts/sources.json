@@ -1,35 +1,82 @@
 [
   {
     "id": "bells",
-    "name": "响亮钟声",
+    "name": "清脆颂钵",
     "file": "bells.wav",
-    "source": "https://commons.wikimedia.org/wiki/File:St._Paul%E2%80%99s_bell-ringing_practice.oga",
-    "download": "https://upload.wikimedia.org/wikipedia/commons/0/04/St._Paul%E2%80%99s_bell-ringing_practice.oga?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
-    "author": "Tom Ackroyd",
+    "source": "Procedural additive harmonic synthesis (528Hz / 792Hz singing bowl overtones)",
+    "author": "MoonPet contributors",
     "license": "CC0-1.0",
-    "modified": "excerpt, loudness normalised, mono PCM WAV, fades",
-    "sha256": "bfb8d34e4ba75d08f776e8bb54cce43e52227c99768f771b60ed94d01b5a7d46"
+    "modified": "44.1kHz 16-bit mono PCM WAV, natural decay and loop breathing space",
+    "sha256": "2adbe4e74d294ba2009af4ec3eec01dd123f782dc072edeea485b63af03cc335"
   },
   {
     "id": "chime",
-    "name": "双音提示",
+    "name": "柔和双音",
     "file": "chime.wav",
-    "source": "https://commons.wikimedia.org/wiki/File:Airplane_Chime_Sound_Effect.ogg",
-    "download": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Airplane_Chime_Sound_Effect.ogg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
-    "author": "Sharelk",
+    "source": "Procedural additive harmonic synthesis (G5 -> D6 warm marimba/chime fifth)",
+    "author": "MoonPet contributors",
     "license": "CC0-1.0",
-    "modified": "excerpt, loudness normalised, mono PCM WAV, fades",
-    "sha256": "4efef59943b868a7a751c3ef17347a816605eae0f0f9bca7f79da41c03aaf14f"
+    "modified": "44.1kHz 16-bit mono PCM WAV, natural decay and loop breathing space",
+    "sha256": "de7a52ffa2bb19d0845a1a6dabb3e3981a6f930e414ba60f0e60bcce7cfc0c54"
   },
   {
     "id": "wind",
-    "name": "旋律风铃",
+    "name": "空灵八音盒",
     "file": "wind.wav",
-    "source": "https://commons.wikimedia.org/wiki/File:Windglockenspiel.Koshi.ogg",
-    "download": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Windglockenspiel.Koshi.ogg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
-    "author": "Membeth",
+    "source": "Procedural additive harmonic synthesis (C5-E5-G5-B5-D6-E6 celesta/music-box arpeggio)",
+    "author": "MoonPet contributors",
     "license": "CC0-1.0",
-    "modified": "excerpt, loudness normalised, mono PCM WAV, fades",
-    "sha256": "0466466b37a380c3b3106c443ae83f45425dcdaf6c600c9be938c222c4315bfd"
+    "modified": "44.1kHz 16-bit mono PCM WAV, natural decay and loop breathing space",
+    "sha256": "8ded513e2768a9461897931b3c934fe4d37d57ad1d69d29bfb2e40446fdf92cb"
+  },
+  {
+    "id": "harp",
+    "name": "云朵竖琴",
+    "file": "harp.wav",
+    "source": "Procedural additive harmonic synthesis (Fmaj9 -> Cmaj9 warm plucked harp glissando)",
+    "author": "MoonPet contributors",
+    "license": "CC0-1.0",
+    "modified": "44.1kHz 16-bit mono PCM WAV, natural decay and loop breathing space",
+    "sha256": "d96c3e55c585bc90a4fcfd3d4c90c88151b701d36c0261cd5b088e14bcf18047"
+  },
+  {
+    "id": "water",
+    "name": "竹林水滴",
+    "file": "water.wav",
+    "source": "Procedural additive harmonic synthesis (bamboo tap + upward water droplet resonance)",
+    "author": "MoonPet contributors",
+    "license": "CC0-1.0",
+    "modified": "44.1kHz 16-bit mono PCM WAV, natural decay and loop breathing space",
+    "sha256": "0af17ea0f2a420b6bbca13f76e8d63f414f62df1c8de0cad262cb79e04214567"
+  },
+  {
+    "id": "piano",
+    "name": "温暖电钢",
+    "file": "piano.wav",
+    "source": "Procedural additive harmonic synthesis (Lo-Fi Rhodes electric piano Cmaj9 chord)",
+    "author": "MoonPet contributors",
+    "license": "CC0-1.0",
+    "modified": "44.1kHz 16-bit mono PCM WAV, natural decay and loop breathing space",
+    "sha256": "7b1e6d90279cbf84b634af90c2f287641a20cbfa4ad42090701338218f729a8d"
+  },
+  {
+    "id": "pulse",
+    "name": "轻柔脉冲",
+    "file": "pulse.wav",
+    "source": "Procedural additive harmonic synthesis (minimal glass E5-B5-E6 triple pulse)",
+    "author": "MoonPet contributors",
+    "license": "CC0-1.0",
+    "modified": "44.1kHz 16-bit mono PCM WAV, natural decay and loop breathing space",
+    "sha256": "6fd362b049218c5412540d8578768af7cec63fbe0b5abd128f1bd1e275b94cf5"
+  },
+  {
+    "id": "voice",
+    "name": "语音温柔提醒",
+    "file": "voice.wav",
+    "source": "Gentle chime intro + MeloTTS open-source neural speech synthesis",
+    "author": "MoonPet contributors",
+    "license": "MIT",
+    "modified": "44.1kHz 16-bit mono PCM WAV, chime intro and loop breathing space",
+    "sha256": "602409b07b783171264dfae73884f4a3659c994a885ad709b8ab33495759fe98"
   }
 ]
