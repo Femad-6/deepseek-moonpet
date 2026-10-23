@@ -132,3 +132,15 @@ test('createUsageService reads signed-in DeepSeek account balance when DEEPSEEK_
   assert.equal(bal.currency, 'CNY')
   assert.equal(bal.totalBalance, 25)
 })
+
+
+test('brand portrait is served as a self-contained SVG asset', async () => {
+  const handler = routes.get('/dsh-moonpet/asset/ui/brand.svg')
+  assert.equal(typeof handler, 'function')
+  let code, headers, bytes
+  await handler({}, { writeHead(c, h) { code = c; headers = h }, end(data) { bytes = String(data) } })
+  assert.equal(code, 200)
+  assert.match(JSON.stringify(headers), /image\/svg\+xml/)
+  assert.match(bytes, /data:image\/png;base64,/)
+  assert.doesNotMatch(bytes, /href="https?:/)
+})

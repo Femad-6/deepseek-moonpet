@@ -31,5 +31,35 @@
     "license": "CC0-1.0",
     "modified": "excerpt, loudness normalised, mono PCM WAV, fades",
     "sha256": "0466466b37a380c3b3106c443ae83f45425dcdaf6c600c9be938c222c4315bfd"
+  },
+  {
+    "id": "soft",
+    "name": "轻柔和弦",
+    "file": "soft.wav",
+    "source": "scripts/generate-focus-tones.py",
+    "author": "MoonPet contributors",
+    "license": "MIT",
+    "modified": "Original mathematical tone synthesis, mono 22050 Hz 16-bit PCM, fades and peak limiting",
+    "sha256": "986662f482a82171748c135e4791f7553c493e7b58c96773a86d75e5f2f7aa4a"
+  },
+  {
+    "id": "pulse",
+    "name": "电子脉冲",
+    "file": "pulse.wav",
+    "source": "scripts/generate-focus-tones.py",
+    "author": "MoonPet contributors",
+    "license": "MIT",
+    "modified": "Original mathematical tone synthesis, mono 22050 Hz 16-bit PCM, fades and peak limiting",
+    "sha256": "9f4e945128206eab2b98e689560fe64bcdc7281851a01ba2336d69816bb66a31"
+  },
+  {
+    "id": "triple",
+    "name": "三音铃声",
+    "file": "triple.wav",
+    "source": "scripts/generate-focus-tones.py",
+    "author": "MoonPet contributors",
+    "license": "MIT",
+    "modified": "Original mathematical tone synthesis, mono 22050 Hz 16-bit PCM, fades and peak limiting",
+    "sha256": "1a8f37a345b7866dd66bd981f2ae563d1c45bdf974e23a999f798157b91b8504"
   }
 ]

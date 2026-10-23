@@ -30,3 +30,14 @@ test('damaged saved JSON cannot break bootstrap or create an invalid timer',()=>
  const state=timer.snapshot();assert.equal(state.status,'paused');assert.equal(state.remainingMs,25*60000);assert.equal(state.totalWorkMs,0);assert.equal(state.todayWorkMs,0);assert.equal(state.sessions,0);assert.equal(state.settings.sound,'bells')
 })
 test('changing idle work duration updates the countdown before starting',()=>{const s=setup();s.timer.command('settings',{workMinutes:50});assert.equal(s.timer.snapshot().remainingMs,50*60000)})
+
+
+test('sound can change during running and paused timers without resetting time',()=>{
+ const s=setup();s.timer.command('start',{workMinutes:1});s.advance(10000)
+ let state=s.timer.command('settings',{sound:'soft'})
+ assert.equal(state.status,'running');assert.equal(state.remainingMs,50000);assert.equal(state.settings.sound,'soft');assert.equal(s.saved().settings.sound,'soft')
+ assert.throws(()=>s.timer.command('settings',{workMinutes:2}),/结束/)
+ s.timer.command('pause');s.advance(5000);state=s.timer.command('settings',{sound:'pulse'})
+ assert.equal(state.status,'paused');assert.equal(state.remainingMs,50000);assert.equal(state.settings.sound,'pulse')
+ s.timer.command('resume');s.advance(50000);s.timer.tick();assert.equal(s.alarms[0].sound,'pulse')
+})
