@@ -13,17 +13,11 @@
 
 ## 提醒音
 
-现提供六种提醒音，新增轻柔和弦、电子脉冲、三音铃声，由数学合成生成，无需联网。运行或暂停计时期间也可修改提醒音，保存后用于后续提醒；当前倒计时与工作记录保持不变。时长仍需结束计时后修改。使用「试听 3 秒」预听所选声音；正在播放的声音可点击「停止提醒」终止。
+现提供十一种提醒音：清脆颂钵、柔和双音、空灵八音盒、云朵竖琴、竹林水滴、温暖电钢、轻柔脉冲、语音温柔提醒、轻柔和弦、电子脉冲、三音铃声。保留远程更新提供的八种声音，并补充三种本地数学合成音效。
 
-原有三种素材已下载并转换为单声道 PCM WAV，做了短淡入淡出和响度处理。正式提醒最长 20 秒。Windows 后端使用独立、隐藏的音频助手播放，避免 Chromium 隐藏页面计时节流影响响铃。系统静音或音量低时仍需用户调整系统音量；插件不会强行修改系统音量。
+运行或暂停计时期间也可修改提醒音，保存后用于后续提醒；倒计时与工作记录保持不变。时长仍需结束计时后修改。使用「试听 3 秒」预听所选声音；正在播放的声音可点击「停止提醒」终止。正式提醒最长 20 秒，系统音量由用户控制。
 
-| 选项 | 原素材 | 作者 | 许可 |
-|---|---|---|---|
-| 响亮钟声 | [St. Paul’s bell-ringing practice](https://commons.wikimedia.org/wiki/File:St._Paul%E2%80%99s_bell-ringing_practice.oga)，截取 5–17 秒 | Tom Ackroyd | CC0 1.0 |
-| 双音提示 | [Airplane Chime Sound Effect](https://commons.wikimedia.org/wiki/File:Airplane_Chime_Sound_Effect.ogg)，约 3 秒 | Sharelk | CC0 1.0 |
-| 旋律风铃 | [Windglockenspiel.Koshi](https://commons.wikimedia.org/wiki/File:Windglockenspiel.Koshi.ogg)，截取 3–15 秒 | Membeth | CC0 1.0 |
-
-详细下载 URL、SHA-256 与修改说明见 `assets/alerts/sources.json`。这些音频保留原有 CC0 身份，代码的 MIT 许可不替代音频的来源记录。
+Windows 后端使用独立、隐藏的音频助手播放。详细来源、逐项许可和 SHA-256 见 `assets/alerts/sources.json`；三种补充音效可用 `python scripts/generate-focus-tones.py` 重新生成。
 
 其他平台通过浏览器播放声音，可能受到浏览器自动播放政策限制；Windows 本地后端播放不依赖浏览器自动播放。无需模型调用或运行时联网。
 

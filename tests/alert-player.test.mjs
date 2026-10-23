@@ -16,7 +16,7 @@ test('every reminder option has a distinct playable bundled PCM WAV', async()=>{
  const {FOCUS_SOUNDS}=await import('../lib/focus.js')
  const fs=await import('node:fs');const {createHash}=await import('node:crypto')
  const hashes=new Set()
- assert.equal(FOCUS_SOUNDS.length,6)
+ assert.equal(FOCUS_SOUNDS.length,11)
  for(const sound of FOCUS_SOUNDS){
   const bytes=fs.readFileSync(new URL(`../assets/alerts/${sound.id}.wav`,import.meta.url))
   assert.equal(bytes.toString('ascii',0,4),'RIFF');assert.equal(bytes.toString('ascii',8,12),'WAVE')
@@ -24,5 +24,5 @@ test('every reminder option has a distinct playable bundled PCM WAV', async()=>{
   assert.ok(bytes.length>22050,'sound is not an empty placeholder')
   hashes.add(createHash('sha256').update(bytes).digest('hex'))
  }
- assert.equal(hashes.size,6)
+ assert.equal(hashes.size,11)
 })

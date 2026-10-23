@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RATE = 22050
 TONES = {
     'soft': [(0.0, 1.6, (261.63, 329.63, 392.0)), (1.8, 1.6, (293.66, 369.99, 440.0))],
-    'pulse': [(i * .32, .18, (660.0 if i % 2 == 0 else 880.0,)) for i in range(6)],
+    'digital': [(i * .32, .18, (660.0 if i % 2 == 0 else 880.0,)) for i in range(6)],
     'triple': [(i * .55, 1.0, (f, f * 2.01)) for i, f in enumerate((523.25, 659.25, 783.99))],
 }
 
