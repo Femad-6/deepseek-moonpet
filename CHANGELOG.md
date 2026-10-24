@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.5 (2026-10-24, GitHub release)
+
+- Added Sakura, Stella and Yuzu character packs, each with eight distinct transparent state sprites.
+- Expanded the motivational catalogue from 12 to 25 lines with complete Chinese, English and Japanese subtitles.
+- Added six optional 25-line voice packs; regenerated the four Chinese voices with Qwen3-TTS 1.7B and softer conversational instructions, while preserving the two Kokoro English voices.
+- Included reproducible generation scripts, model revisions, per-clip provenance and checksums. Audio is distributed separately as a Release attachment; models and authoring environments are not included.
+- Verified 43 offline tests, package contents and browser voice selection/playback.
+
+## 0.1.4 (2026-10-24)
+
+- Replaced the plugin emblem with the bundled Whale portrait and redesigned settings in graphite and ice blue.
+- Unified close, expand, settings and stepper controls with SVG icons; improved narrow viewport layout and panel stacking.
+- Included eleven reminder sounds with previews and recorded provenance.
+- Fixed sound selection during running and paused focus timers without resetting remaining time or recorded work.
+- Verified all reminder files are included in the npm package.
+
 ## 0.1.2 (2026-10-07, npm release)
 
 - Added the built-in 鲸蓝 · Whale character with eight independent transparent full-body sprites: idle, thinking, working, waiting, done, error, stopped and offline.

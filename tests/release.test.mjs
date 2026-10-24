@@ -13,7 +13,7 @@ const read = rel => fs.readFileSync(path.join(root,rel), 'utf8')
 test('new package has its own namespace, MIT attribution and Chinese defaults', () => {
   const pkg = JSON.parse(read('package.json'))
   assert.equal(pkg.name, 'dsh-moonpet')
-  assert.equal(pkg.version, '0.1.3')
+  assert.equal(pkg.version, '0.1.5')
   assert.ok(read('cordis.patch.yml').includes('id: dsh-moonpet'))
   for (const name of fs.readdirSync(path.join(root,'lib'))) {
     assert.ok(!read(`lib/${name}`).includes('/dsh-gal'), name)
@@ -25,7 +25,7 @@ test('new package has its own namespace, MIT attribution and Chinese defaults', 
 })
 test('all built-in states resolve to shipped alpha PNGs without upstream voices', () => {
   const registry = createPackRegistry({roots:[path.join(root,'assets/packs')]})
-  assert.deepEqual(registry.all().map(p=>p.id).sort(), ['moon', 'whale'])
+  assert.deepEqual(registry.all().map(p=>p.id).sort(), ['moon', 'sakura', 'stella', 'whale', 'yuzu'])
   const pack=registry.get('moon')
   assert.equal(pack.sprites.length,3)
   assert.equal(pack.voices.length,0)
@@ -35,19 +35,19 @@ test('all built-in states resolve to shipped alpha PNGs without upstream voices'
   }
   assert.ok(!fs.existsSync(path.join(root,'assets/packs/neri')))
 })
-test('whale character ships eight distinct, transparent state sprites at a consistent size', () => {
+for (const character of ['whale', 'sakura', 'stella', 'yuzu']) test(`${character} ships eight distinct, transparent state sprites at a consistent size`, () => {
   const registry = createPackRegistry({roots:[path.join(root,'assets/packs')]})
-  const pack = registry.get('whale')
-  assert.ok(pack, 'whale is discoverable in the built-in character selector')
+  const pack = registry.get(character)
+  assert.ok(pack, `${character} is discoverable in the built-in character selector`)
   assert.equal(pack.defaultSprite, 'idle.png')
   assert.equal(pack.voices.length, 0)
   const states = ['idle','thinking','working','waiting','done','error','stopped','offline']
-  const map = JSON.parse(read('assets/packs/whale/pet.json')).sprites
+  const map = JSON.parse(read(`assets/packs/${character}/pet.json`)).sprites
   assert.deepEqual(Object.keys(map).sort(), states.slice().sort())
   assert.equal(pack.sprites.length, states.length)
   const hashes = new Set(), sizes = new Set()
   for (const state of states) {
-    const asset = registry.resolveAsset('whale', 'sprite', map[state])
+    const asset = registry.resolveAsset(character, 'sprite', map[state])
     assert.ok(asset, state)
     const bytes = fs.readFileSync(path.join(pack.spriteDir, map[state]))
     const alpha = readPngAlphaBox(bytes)

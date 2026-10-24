@@ -1,0 +1,4 @@
+# Optional local audio authoring environment. Keep separate from Kokoro.
+qwen-tts==0.1.1
+soundfile==0.13.1
+# Install a TorchAudio wheel matching the local PyTorch build (see docs/voices.md).

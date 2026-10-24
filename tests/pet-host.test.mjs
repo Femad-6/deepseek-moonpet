@@ -87,10 +87,10 @@ test('focus API persists settings, starts pauses resumes and rejects unsafe soun
   assert.ok(fs.existsSync(path.join(home,'.dsh-moonpet-focus.json')))
 })
 
-test('selecting Whale switches real session events to its independent expressions', async () => {
-  await read('/dsh-moonpet/api/config', 'PUT', JSON.stringify({spritePack:'whale',petEnabled:true}))
+for (const character of ['whale', 'sakura', 'stella', 'yuzu']) test(`selecting ${character} switches session events to its independent expressions`, async () => {
+  await read('/dsh-moonpet/api/config', 'PUT', JSON.stringify({spritePack:character,petEnabled:true}))
   const boot = await read('/dsh-moonpet/api/bootstrap')
-  assert.equal(boot.config.spritePack, 'whale')
+  assert.equal(boot.config.spritePack, character)
   for (const [type, data, status] of [
     ['turn/start', {turn:2}, 'thinking'],
     ['tool/call', {turn:2,callId:'whale-tool',name:'read_file',arguments:'{}'}, 'working'],
@@ -103,11 +103,11 @@ test('selecting Whale switches real session events to its independent expression
     ['turn/start', {turn:4}, 'thinking'],
     ['turn/end', {turn:4,reason:{kind:'aborted'}}, 'stopped'],
   ]) {
-    send(type, data, 'whale-session')
+    send(type, data, `${character}-session`)
     const result = await read()
     assert.equal(result.pet.status, status)
     assert.equal(result.pet.sprite.file, `${status}.png`)
-    assert.ok(result.pet.sprite.url.includes('pack=whale'))
+    assert.ok(result.pet.sprite.url.includes(`pack=${character}`))
   }
 })
 

@@ -16,8 +16,8 @@ MoonPet is a local companion plugin for DeepSeek Harness. It reacts to real sess
 - 完成 → 短暂跳动；失败或中断 → 降低饱和度；约六秒后恢复待机。
 - 多个聊天或子代理同时工作时聚合状态，等待审批优先；同时显示任务数量。
 - 拖动定位、立绘缩放、状态宠物开关，尊重系统减少动态效果设置。
-- 番茄钟：默认工作 25／休息 5 分钟，开始、暂停、继续、结束，记录今日与累计工作时间；到期弹出提醒并响铃，可选三种已下载的提醒音。
-- 内置「月伴 · Moon」三张立绘及「鲸蓝 · Whale」八种状态表情；可添加自己的角色包、台词和语音，内置角色不附带语音。
+- 番茄钟：默认工作 25／休息 5 分钟，开始、暂停、继续、结束，记录今日与累计工作时间；到期弹出提醒并响铃，可选十一种已下载的提醒音。
+- 内置「月伴 · Moon」三张立绘，以及「鲸蓝 · Whale」「樱铃 · Sakura」「星璃 · Stella」「森柚 · Yuzu」各八种状态表情；可添加自己的角色包、台词和语音，内置角色不附带语音。
 - 可选余额、token 和花费展示。花费依据内置历史费率估算，可自行覆盖；不替代供应商账单。
 - 同时启用 Our Free Model 时，单独展示已有账号渠道的剩余额度；积分、Token、美元与 Gemini 配额窗口分别显示，查询失败时标注缓存。
 - 官方插件列表展示专属月牙小鲸鱼图标。
@@ -28,26 +28,28 @@ MoonPet is a local companion plugin for DeepSeek Harness. It reacts to real sess
 
 ## 安装
 
-当前版本：**[0.1.3](https://www.npmjs.com/package/dsh-moonpet/v/0.1.3)**，已公开发布到 npm，并设为 `latest`（2026-10-20 核验）。本次新增专属插件图标和 Our Free Model 渠道额度展示，继续提供月伴与鲸蓝角色包。源码见 [GitHub v0.1.3](https://github.com/Femad-6/deepseek-moonpet/tree/v0.1.3)。
+GitHub 本次版本：**[v0.1.5](https://github.com/Femad-6/deepseek-moonpet/releases/tag/v0.1.5)**。新增樱铃、星璃、森柚三套八状态角色，台词扩充为 25 句，提供六套独立语音包，其中中文四套按试听反馈重录为轻柔陪伴版。继续提供鲸蓝人物头像、冰蓝设置面板、十一种提醒音、番茄钟和独立渠道额度展示。
+
+安装本次版本，请在 Harness 插件安装输入框中填写 [v0.1.5 插件安装包](https://github.com/Femad-6/deepseek-moonpet/releases/download/v0.1.5/dsh-moonpet-0.1.5.tgz) 的下载链接，或下载后填写文件的绝对路径。本次未同步发布 npm，下面的 npm 安装说明仍对应已发布的 **0.1.4**。
 
 需要已安装且支持组合包插件的 DeepSeek Harness Desktop 或 Web。状态宠物不要求 API key；余额功能可使用 Harness 中已有的 DeepSeek 凭据。
 
 ### 插件市场安装
 
-在支持 npm 插件发现的市场中搜索 `dsh-moonpet`，确认版本为 **0.1.3** 或更新版本，安装并启用。如果没有搜索到，可刷新市场目录，或直接使用下方完整 npm 包名安装。市场索引可能未收录此包，npm 发布、镜像同步与市场目录更新也可能存在延迟。
+在支持 npm 插件发现的市场中搜索 `dsh-moonpet`，确认版本为 **0.1.4** 或更新版本，安装并启用。如果没有搜索到，可刷新市场目录，或直接使用下方完整 npm 包名安装。市场索引可能未收录此包，npm 发布、镜像同步与市场目录更新也可能存在延迟。
 
 ### 按 npm 包名安装
 
 在 Harness 的 **插件 → 添加插件** 中输入：
 
 ```text
-dsh-moonpet@0.1.3
+dsh-moonpet@0.1.4
 ```
 
 也可以在支持此命令的 Harness CLI 中安装：
 
 ```powershell
-dsh plugin --profile desktop add dsh-moonpet@0.1.3
+dsh plugin --profile desktop add dsh-moonpet@0.1.4
 ```
 
 Web 用户使用 `--profile web`。插件需要通过 Harness 的插件安装入口加载；普通项目中的 `npm install` 不会自动启用 Harness 插件。
@@ -57,18 +59,22 @@ Web 用户使用 `--profile web`。插件需要通过 Harness 的插件安装入
 也可以在插件安装输入框中填写 npm 官方安装包链接：
 
 ```text
-https://registry.npmjs.org/dsh-moonpet/-/dsh-moonpet-0.1.3.tgz
+https://registry.npmjs.org/dsh-moonpet/-/dsh-moonpet-0.1.4.tgz
 ```
 
-或者下载该安装包，在插件输入框中填写文件的绝对路径。本地打包文件名为 `dsh-moonpet-0.1.3.tgz`；[GitHub Releases](https://github.com/Femad-6/deepseek-moonpet/releases) 也是下载入口，请以各 Release 实际提供的版本与文件为准。
+或者下载该安装包，在插件输入框中填写文件的绝对路径。本地打包文件名为 `dsh-moonpet-0.1.4.tgz`；[GitHub Releases](https://github.com/Femad-6/deepseek-moonpet/releases) 也是下载入口，请以各 Release 实际提供的版本与文件为准。
 
 以上方式安装并启用后，完全退出再打开 Harness。Windows 需要从系统托盘退出；关闭窗口通常只是隐藏。安装成功后，在宠物右上角的月亮按钮里可以调整位置、缩放和「状态宠物」开关。
 
 ### 可选的中文／英文励志语音
 
-Release 另提供 [moonpet-multilingual-voices.zip](https://github.com/Femad-6/deepseek-moonpet/releases/latest/download/moonpet-multilingual-voices.zip)。解压后，将 `english-boost` 和 `chinese-boost` 两个目录复制到 `~/.dsh/dsh-moonpet/packs/`，刷新页面，在「字幕与资源 → 语音包」选择。
+本次六套 25 句语音包下载：[moonpet-natural-voices-25-lines-20261024.zip](https://github.com/Femad-6/deepseek-moonpet/releases/download/v0.1.5/moonpet-natural-voices-25-lines-20261024.zip)。解压后，将其中六个 `kokoro-` 开头的目录放入 `~/.dsh/dsh-moonpet/packs/`，刷新页面，在「字幕与资源 → 语音包」中选择。四套中文使用 Qwen3-TTS 轻柔版音频，两套英文保留 Kokoro；目录名沿用旧包 ID，以保持已有选择兼容。
 
-每个包有 12 句短语和完整中／英／日三语字幕。英文为 Microsoft Zira 美式女声，中文为 Microsoft Huihui 普通话女声，均为本地系统语音合成；不附带日文音频。字幕语言与发音可以独立选择。
+历史 v0.1.0 Release 另提供 [moonpet-multilingual-voices.zip](https://github.com/Femad-6/deepseek-moonpet/releases/download/v0.1.0/moonpet-multilingual-voices.zip)。解压后，将 `english-boost` 和 `chinese-boost` 两个目录复制到 `~/.dsh/dsh-moonpet/packs/`，刷新页面，在「字幕与资源 → 语音包」选择。
+
+历史 Release 的每个包有 12 句短语和完整中／英／日三语字幕。英文为 Microsoft Zira 美式女声，中文为 Microsoft Huihui 普通话女声，均为本地系统语音合成；不附带日文音频。字幕语言与发音可以独立选择。
+
+当前台词表已扩充到 25 句；新增可选语音包提供两种中文女声、两种中文男声、美式与英式英文女声，每套 25 句，共 150 段音频。中文已按试听反馈使用 Qwen3-TTS 重录为轻柔陪伴版，英文保留 Kokoro 音色。它们由开源权重模型本地合成，播放时不需要模型、联网或 API Key，且可与任何角色独立搭配。新包独立于历史 Release 下载，制作、安装与来源见 [语音包](docs/voices.md)。
 
 这两套系统语音是拼接式的 SAPI 语音，听感偏生硬。想换成自然的声音、或干脆克隆角色本音，用仓库里的生成器以开源模型重录即可（不需要改插件代码）：
 
@@ -84,7 +90,7 @@ python scripts/make-voice-pack.py --engine cosyvoice --ref-audio D:\voice\moon-r
 
 ### 内置鲸蓝角色
 
-安装 0.1.3 后，在月亮设置按钮 →「字幕与资源」→「立绘包」中选择 **鲸蓝 · Whale**。原默认角色继续保留，语音包可独立选择。
+安装 0.1.4 后，在角色旁的设置按钮 →「字幕与资源」→「立绘包」中选择 **鲸蓝 · Whale**。原默认角色继续保留，语音包可独立选择。
 
 | 状态 | 表情与动作 |
 |---|---|
@@ -98,6 +104,18 @@ python scripts/make-voice-pack.py --engine cosyvoice --ref-audio D:\voice\moon-r
 | 离线 offline | 闭眼休息 |
 
 八张透明 PNG 使用一致画布，切换时保持布局稳定。表情为静态立绘，继续使用已有的轻微 CSS 动作。
+
+### 更多内置角色
+
+在设置 →「字幕与资源」→「角色」下拉框中可选择以下角色，每套均有八种独立状态立绘：
+
+| 角色 | 人物形象 |
+|---|---|
+| 樱铃 · Sakura（8） | 粉色长发、樱花发饰、白粉连衣裙，温柔活泼 |
+| 星璃 · Stella（8） | 银紫长发、星饰与星空披肩，安静神秘 |
+| 森柚 · Yuzu（8） | 栗色短发、猫耳帽、绿白服装，元气可爱 |
+
+状态覆盖待机、思考、工作、等待审批、完成、异常、中断与离线休息；切换角色后自动沿用现有状态联动，语音包仍可独立选择。新角色使用透明 PNG 和一致画布，保留月伴、鲸蓝及用户自定义角色包。素材制作记录见 [角色素材](docs/characters.md)。
 
 ### 添加自己的角色包
 

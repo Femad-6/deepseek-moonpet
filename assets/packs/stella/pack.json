@@ -1,0 +1,12 @@
+{
+  "id": "stella",
+  "displayName": "星璃 · Stella",
+  "description": "银紫长发星空主题角色，安静神秘；八种状态独立立绘，无内置角色语音。",
+  "defaultSprite": "idle.png",
+  "crop": {
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1
+  }
+}

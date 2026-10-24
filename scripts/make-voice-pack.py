@@ -27,7 +27,7 @@ gpt-sovits  GPT-SoVITS（RVC-Boss，MIT）
 
    python runtime/python/fastapi/server.py --port 50000 --model_dir iic/CosyVoice2-0.5B
 
-2) 用 12 句励志台词 + 角色参考音，一次生成中英两个包：
+2) 用 25 句励志台词 + 角色参考音，一次生成中英两个包：
 
    python scripts/make-voice-pack.py \
      --engine cosyvoice \

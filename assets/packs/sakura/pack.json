@@ -1,0 +1,12 @@
+{
+  "id": "sakura",
+  "displayName": "樱铃 · Sakura",
+  "description": "粉发樱花主题角色，温柔活泼；八种状态独立立绘，无内置角色语音。",
+  "defaultSprite": "idle.png",
+  "crop": {
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1
+  }
+}

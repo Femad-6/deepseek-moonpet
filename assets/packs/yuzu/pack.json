@@ -1,0 +1,12 @@
+{
+  "id": "yuzu",
+  "displayName": "森柚 · Yuzu",
+  "description": "栗色短发森林主题角色，元气可爱；八种状态独立立绘，无内置角色语音。",
+  "defaultSprite": "idle.png",
+  "crop": {
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 1
+  }
+}

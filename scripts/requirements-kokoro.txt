@@ -1,0 +1,6 @@
+# Optional authoring dependencies; install inside a dedicated environment.
+kokoro==0.9.4
+misaki[en,zh]==0.9.4
+transformers==4.51.3
+soundfile==0.13.1
+espeakng-loader==0.2.4

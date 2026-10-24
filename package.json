@@ -1,6 +1,6 @@
 {
   "name": "dsh-moonpet",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "icon": "assets/icon.svg",
   "description": "MoonPet（月伴）— DeepSeek Harness 状态宠物与番茄钟：表情联动、工作时长记录、多语言字幕和休息提醒。",
   "type": "module",
