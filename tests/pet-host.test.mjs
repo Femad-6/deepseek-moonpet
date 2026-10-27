@@ -141,6 +141,7 @@ test('brand portrait is served as a self-contained SVG asset', async () => {
   await handler({}, { writeHead(c, h) { code = c; headers = h }, end(data) { bytes = String(data) } })
   assert.equal(code, 200)
   assert.match(JSON.stringify(headers), /image\/svg\+xml/)
-  assert.match(bytes, /data:image\/png;base64,/)
+  assert.match(bytes, /data:image\/webp;base64,/)
+  assert.ok(Buffer.byteLength(bytes) <= 256 * 1024, 'portrait stays within the host icon limit')
   assert.doesNotMatch(bytes, /href="https?:/)
 })

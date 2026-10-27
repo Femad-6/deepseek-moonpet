@@ -15,6 +15,8 @@ for (const character of ['whale', 'sakura', 'stella', 'yuzu']) {
   }
 }
 for(const file of required)assert.ok(fs.existsSync(path.join(root,file)),`Missing ${file}`)
+const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'))
+assert.ok(fs.statSync(path.join(root, pkg.icon)).size <= 256 * 1024, 'Plugin icon exceeds 256 KiB')
 const npmCli=process.env.npm_execpath || path.join(path.dirname(process.execPath),'node_modules/npm/bin/npm-cli.js')
 const run=spawnSync(process.execPath,[npmCli,'pack','--dry-run','--json','--ignore-scripts'],{cwd:root,encoding:'utf8',windowsHide:true})
 assert.equal(run.status,0,run.stderr)
