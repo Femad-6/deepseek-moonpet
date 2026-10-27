@@ -20,6 +20,10 @@ const run=spawnSync(process.execPath,[npmCli,'pack','--dry-run','--json','--igno
 assert.equal(run.status,0,run.stderr)
 const [manifest]=JSON.parse(run.stdout)
 const files=manifest.files.map(file=>file.path)
+const pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'))
+const icon=manifest.files.find(file=>file.path===pkg.icon)
+assert.ok(icon,`Not packed: plugin icon ${pkg.icon}`)
+assert.ok(icon.size>0 && icon.size<=256*1024,`Plugin icon is ${icon.size} bytes; DSH allows 1 to 262144`)
 for (const file of required) assert.ok(files.includes(file), `Not packed: ${file}`)
 for(const file of files){
   assert.ok(!/^(work|tests|\.github|node_modules|dist)\//.test(file),`Unexpected ${file}`)
