@@ -10,6 +10,12 @@ import { createHash } from 'node:crypto'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const read = rel => fs.readFileSync(path.join(root,rel), 'utf8')
+test('declared plugin icon fits the DSH 256 KiB metadata limit', () => {
+  const pkg = JSON.parse(read('package.json'))
+  const bytes = fs.statSync(path.join(root, pkg.icon)).size
+  assert.ok(bytes > 0, 'Plugin icon must not be empty')
+  assert.ok(bytes <= 256 * 1024, `Plugin icon is ${bytes} bytes; DSH allows at most 262144`)
+})
 test('new package has its own namespace, MIT attribution and Chinese defaults', () => {
   const pkg = JSON.parse(read('package.json'))
   assert.equal(pkg.name, 'dsh-moonpet')

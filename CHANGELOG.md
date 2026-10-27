@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Compressed the plugin portrait's embedded bitmap to fix DSH's `icon exceeds 256 KiB` metadata error without changing the SVG layout or original character sprite.
+- Added icon-size checks to the release tests and package validation to prevent oversized icons from shipping again.
+
 ## 0.1.5 (2026-10-24, GitHub release)
 
 - Added Sakura, Stella and Yuzu character packs, each with eight distinct transparent state sprites.
