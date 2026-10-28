@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.1.6 (2026-10-28)
 
+- Added gentle click feedback, contextual companion lines without a voice pack, and silent focus encouragement with configurable 1–60 minute intervals, progress milestones, or an off switch. Preferences save immediately without resetting the timer; responses vary with progress and task status.
 - Compressed the plugin portrait's embedded bitmap to fix DSH's `icon exceeds 256 KiB` metadata error without changing the SVG layout or original character sprite.
 - Added icon-size checks to the release tests and package validation to prevent oversized icons from shipping again.
 

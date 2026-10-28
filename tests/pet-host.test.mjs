@@ -44,6 +44,7 @@ test('Host exposes event-driven art, safe fallback, completion without token usa
   let result = await read()
   assert.equal(result.pet.status, 'idle')
   assert.equal(result.pet.sprite.file, 'idle.png')
+  assert.equal(result.pet.interactionSprite.file, 'done.png')
   send('turn/start', { turn: 1 })
   result = await read()
   assert.equal(result.pet.status, 'thinking')

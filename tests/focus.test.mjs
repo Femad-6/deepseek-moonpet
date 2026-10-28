@@ -2,6 +2,20 @@ import {test} from 'node:test'
 import assert from 'node:assert/strict'
 import {createFocusTimer} from '../lib/focus.js'
 const setup=()=>{let now=0;const alarms=[];let saved;const timer=createFocusTimer({now:()=>now,save:s=>{saved=structuredClone(s)},onAlarm:s=>alarms.push(s),dayKey:t=>String(Math.floor(t/86400000))});return{timer,alarms,advance:ms=>{now+=ms},saved:()=>saved,set:ms=>{now=ms}}}
+
+test('companion preferences persist and can change live without resetting the running timer',()=>{
+ const s=setup();s.timer.command('start');s.advance(60000)
+ const result=s.timer.command('settings',{reminderMode:'milestones',reminderMinutes:8})
+ assert.equal(result.remainingMs,24*60000);assert.equal(result.settings.reminderMode,'milestones')
+ const restored=createFocusTimer({initial:s.saved(),now:()=>60000})
+ assert.equal(restored.snapshot().settings.reminderMinutes,8)
+ assert.throws(()=>s.timer.command('settings',{reminderMode:'wrong'}))
+ assert.throws(()=>s.timer.command('settings',{reminderMinutes:0}))
+ assert.throws(()=>s.timer.command('settings',{reminderMinutes:2.5}))
+ assert.equal(s.timer.snapshot().settings.reminderMode,'milestones')
+ s.timer.command('settings',{reminderMode:'off'});s.advance(24*60000)
+ assert.equal(s.timer.snapshot().alertPending,true,'disabling encouragement must preserve the finish alarm')
+})
 test('work deadline records only work duration, signals once and requires manual rest',()=>{
  const s=setup();s.timer.command('start',{workMinutes:1,breakMinutes:1});s.advance(120000);s.timer.tick();s.timer.tick();
  const state=s.timer.snapshot();assert.equal(state.status,'finished');assert.equal(state.totalWorkMs,60000);assert.equal(state.sessions,1);assert.equal(s.alarms.length,1);

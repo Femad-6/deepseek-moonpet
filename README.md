@@ -22,34 +22,36 @@ MoonPet is a local companion plugin for DeepSeek Harness. It reacts to real sess
 - 同时启用 Our Free Model 时，单独展示已有账号渠道的剩余额度；积分、Token、美元与 Gemini 配额窗口分别显示，查询失败时标注缓存。
 - 官方插件列表展示专属月牙小鲸鱼图标。
 
-状态变化静音。点击角色仍可播放你自己的语音；没有语音时显示余额页。动作是 CSS 呼吸、摆动和跳动，图片是静态立绘。
+状态变化静音。点击角色有轻微回弹，空闲时短暂展示开心表情，再恢复真实任务状态；等待审批时保留任务表情。点击仍可播放你自己的语音，没有语音包时显示贴合当前任务或专注进度的陪伴语；点击对话框仍可查看余额。动作是 CSS 呼吸、摆动和跳动，图片是静态立绘。
+
+番茄钟运行期间，可按 1–60 分钟间隔（默认 5 分钟）或 25%／50%／75% 进度，通过角色对话框静音显示已专注时间和情境鼓励语，也可关闭主动陪伴语；设置即时保存，运行中修改不重置计时。暂停、继续和休息切换也有陪伴反馈。暂停与休息不累计专注时间，已有台词、账单或审批等待时跳过自动提示，不补播、不调用模型。详见 [番茄钟](docs/focus.md)。
 
 番茄钟单独提醒，默认不自动开始或自动循环。Windows 提醒音由后端调用隐藏的 PowerShell 音频助手播放，窗口隐藏时仍可响铃；试听约 3 秒、正式提醒最长 20 秒，可随时停止，不改变系统音量。正常退出应用会暂停；异常退出最多丢失最后 30 秒未落盘的计时，不把关闭应用后的时间算作工作。详见 [番茄钟](docs/focus.md)。
 
 ## 安装
 
-GitHub 本次版本：**[v0.1.5](https://github.com/Femad-6/deepseek-moonpet/releases/tag/v0.1.5)**。新增樱铃、星璃、森柚三套八状态角色，台词扩充为 25 句，提供六套独立语音包，其中中文四套按试听反馈重录为轻柔陪伴版。继续提供鲸蓝人物头像、冰蓝设置面板、十一种提醒音、番茄钟和独立渠道额度展示。
+当前版本：**0.1.6**。本次新增点击回应、情境陪伴语与可配置的专注鼓励（1–60 分钟间隔、25%／50%／75% 进度或关闭），并修复头像超过 256 KiB 的插件元数据错误。保留五套角色、番茄钟、十一种提醒音和独立渠道额度展示。
 
-安装本次版本，请在 Harness 插件安装输入框中填写 [v0.1.5 插件安装包](https://github.com/Femad-6/deepseek-moonpet/releases/download/v0.1.5/dsh-moonpet-0.1.5.tgz) 的下载链接，或下载后填写文件的绝对路径。本次未同步发布 npm，下面的 npm 安装说明仍对应已发布的 **0.1.4**。
+推荐在 Harness 插件安装输入框填写 `dsh-moonpet@0.1.6`，或使用下方 npm 安装包链接。可选自然语音包继续使用 [v0.1.5 的独立下载](https://github.com/Femad-6/deepseek-moonpet/releases/tag/v0.1.5)。
 
 需要已安装且支持组合包插件的 DeepSeek Harness Desktop 或 Web。状态宠物不要求 API key；余额功能可使用 Harness 中已有的 DeepSeek 凭据。
 
 ### 插件市场安装
 
-在支持 npm 插件发现的市场中搜索 `dsh-moonpet`，确认版本为 **0.1.4** 或更新版本，安装并启用。如果没有搜索到，可刷新市场目录，或直接使用下方完整 npm 包名安装。市场索引可能未收录此包，npm 发布、镜像同步与市场目录更新也可能存在延迟。
+在支持 npm 插件发现的市场中搜索 `dsh-moonpet`，确认版本为 **0.1.6** 或更新版本，安装并启用。如果没有搜索到，可刷新市场目录，或直接使用下方完整 npm 包名安装。市场索引可能未收录此包，npm 发布、镜像同步与市场目录更新也可能存在延迟。
 
 ### 按 npm 包名安装
 
 在 Harness 的 **插件 → 添加插件** 中输入：
 
 ```text
-dsh-moonpet@0.1.4
+dsh-moonpet@0.1.6
 ```
 
 也可以在支持此命令的 Harness CLI 中安装：
 
 ```powershell
-dsh plugin --profile desktop add dsh-moonpet@0.1.4
+dsh plugin --profile desktop add dsh-moonpet@0.1.6
 ```
 
 Web 用户使用 `--profile web`。插件需要通过 Harness 的插件安装入口加载；普通项目中的 `npm install` 不会自动启用 Harness 插件。
@@ -59,10 +61,10 @@ Web 用户使用 `--profile web`。插件需要通过 Harness 的插件安装入
 也可以在插件安装输入框中填写 npm 官方安装包链接：
 
 ```text
-https://registry.npmjs.org/dsh-moonpet/-/dsh-moonpet-0.1.4.tgz
+https://registry.npmjs.org/dsh-moonpet/-/dsh-moonpet-0.1.6.tgz
 ```
 
-或者下载该安装包，在插件输入框中填写文件的绝对路径。本地打包文件名为 `dsh-moonpet-0.1.4.tgz`；[GitHub Releases](https://github.com/Femad-6/deepseek-moonpet/releases) 也是下载入口，请以各 Release 实际提供的版本与文件为准。
+或者下载该安装包，在插件输入框中填写文件的绝对路径。本地打包文件名为 `dsh-moonpet-0.1.6.tgz`；[GitHub Releases](https://github.com/Femad-6/deepseek-moonpet/releases) 也是下载入口，请以各 Release 实际提供的版本与文件为准。
 
 以上方式安装并启用后，完全退出再打开 Harness。Windows 需要从系统托盘退出；关闭窗口通常只是隐藏。安装成功后，在宠物右上角的月亮按钮里可以调整位置、缩放和「状态宠物」开关。
 
