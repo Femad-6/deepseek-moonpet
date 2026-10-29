@@ -88,6 +88,15 @@ test('focus API persists settings, starts pauses resumes and rejects unsafe soun
   assert.ok(fs.existsSync(path.join(home,'.dsh-moonpet-focus.json')))
 })
 
+test('focus audio reads and persists the shared MoonPet volume including mute',async()=>{
+ for(const volume of [0.02,0,1]){
+  await read('/dsh-moonpet/api/config','PUT',JSON.stringify({volume}))
+  const response=await read('/dsh-moonpet/api/focus')
+  assert.equal(response.focus.audio.volume,volume)
+  assert.equal(JSON.parse(fs.readFileSync(path.join(home,'.dsh-moonpet.json'),'utf8')).volume,volume)
+ }
+})
+
 for (const character of ['whale', 'sakura', 'stella', 'yuzu']) test(`selecting ${character} switches session events to its independent expressions`, async () => {
   await read('/dsh-moonpet/api/config', 'PUT', JSON.stringify({spritePack:character,petEnabled:true}))
   const boot = await read('/dsh-moonpet/api/bootstrap')

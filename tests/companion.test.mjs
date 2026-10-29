@@ -71,3 +71,31 @@ test('click responses reflect approval, task outcome and focus progress without 
   assert.match(context.focusEncouragement('working',work(13),0), /处理/)
   assert.match(context.companionLine('done',work(20),0), /完成/)
 })
+
+test('rest completion shows a persistent actionable dialogue even with encouragement off or a missed transition',()=>{
+ const source=fs.readFileSync(new URL('../lib/client.js',import.meta.url),'utf8')
+ const start=source.indexOf('  let interactionCount')
+ const events=new Map(),notices=[]
+ const state={pet:{status:'idle'},dialogShown:false,config:{}}
+ const focusStart={hidden:true,disabled:false}
+ const context=vm.createContext({
+  state,focusStart,document:{hidden:false,addEventListener:(name,fn)=>events.set(name,fn)},
+  cfg:()=>state.config,showNotice:text=>{notices.push(text);state.sheet='line';state.dialogShown=true},
+  applySheet(){},applyLayout(){},cancelAutoHide(){},hideDialog(){state.dialogShown=false},
+  focusEncouragement:()=>'',setTimeout,clearTimeout,
+ })
+ vm.runInContext(source.slice(start,source.indexOf('  function onSpriteClick()',start)),context)
+ const update=focus=>events.get('moonpet:focus-state')({detail:{focus,message:null}})
+ const finished={status:'finished',mode:'break',alertPending:true,alertSeq:2,settings:{workMinutes:25,reminderMode:'off'}}
+ state.panelOpen=true
+ update(finished)
+ assert.equal(notices.length,0)
+ state.panelOpen=false
+ update(finished)
+ assert.equal(state.sheet,'focus')
+ assert.match(notices[0],/休息结束/)
+ update(finished)
+ assert.equal(notices.length,1,'polling must not redraw or steal focus from the button')
+ update({...finished,status:'running',mode:'work',alertPending:false})
+ assert.equal(state.dialogShown,false,'starting elsewhere removes the stale prompt')
+})
