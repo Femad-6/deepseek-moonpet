@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.7 (2026-10-29)
+
+- Included reminder-volume synchronisation (including mute and live changes) and an actionable next-focus-round dialogue after a break.
+
+- Restyled the built-in dialogue plate as an original hand-drawn manga balloon inspired by fukidesign.com/e1846/, with an irregular oval, warm paper fill, blue-grey ink outline and integrated directional tail. User-supplied and blank plates keep their original appearance.
+
+- Serialized settings saves and kept newer local edits when older responses arrive. Failed saves retain pending edits and offer a retry button in settings.
+- Added request deadlines to widget reads, settings saves and focus operations, allowing polling and controls to recover after a timeout.
+- Replaced direct config and usage-ledger writes with temporary-file replacement. Config write failures now return an error without applying unsaved settings.
+
 ## 0.1.6 (2026-10-28)
 
 - Added gentle click feedback, contextual companion lines without a voice pack, and silent focus encouragement with configurable 1–60 minute intervals, progress milestones, or an off switch. Preferences save immediately without resetting the timer; responses vary with progress and task status.

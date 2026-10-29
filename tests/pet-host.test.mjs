@@ -27,6 +27,24 @@ async function read(route = '/dsh-moonpet/api/turn', method = 'GET', body = '') 
   })
 }
 
+test('failed config replacement is reported without applying or damaging the saved config', async () => {
+  const before = (await read('/dsh-moonpet/api/config')).config
+  const file = path.join(home, '.dsh-moonpet.json')
+  const saved = fs.readFileSync(file, 'utf8')
+  const rename = fs.renameSync
+  try {
+    fs.renameSync = (from, to) => {
+      if (String(to).endsWith('.dsh-moonpet.json')) throw new Error('disk full')
+      return rename(from, to)
+    }
+    const reply = await read('/dsh-moonpet/api/config', 'PUT', JSON.stringify({volume:0.12}))
+    assert.equal(reply.ok, false)
+    assert.match(reply.error, /保存失败/)
+    assert.equal((await read('/dsh-moonpet/api/config')).config.volume, before.volume)
+    assert.equal(fs.readFileSync(file, 'utf8'), saved)
+  } finally { fs.renameSync = rename }
+})
+
 test('bootstrap and polling keep own account balance queries alongside the token ledger', async () => {
   const before = credentialReads
   for (const route of ['/dsh-moonpet/api/bootstrap?wallet=ofm', '/dsh-moonpet/api/state?wallet=ofm']) {

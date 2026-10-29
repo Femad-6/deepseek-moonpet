@@ -30,28 +30,28 @@ MoonPet is a local companion plugin for DeepSeek Harness. It reacts to real sess
 
 ## 安装
 
-当前版本：**0.1.6**。本次新增点击回应、情境陪伴语与可配置的专注鼓励（1–60 分钟间隔、25%／50%／75% 进度或关闭），并修复头像超过 256 KiB 的插件元数据错误。保留五套角色、番茄钟、十一种提醒音和独立渠道额度展示。
+当前版本：**0.1.7**。本次重绘手绘漫画对话框，增加设置串行保存、失败重试和请求超时恢复，改进配置与用量账本写入可靠性；提醒音跟随 MoonPet 音量，休息结束可直接开始下一轮专注。保留五套角色、番茄钟、十一种提醒音和独立渠道额度展示。
 
-推荐在 Harness 插件安装输入框填写 `dsh-moonpet@0.1.6`，或使用下方 npm 安装包链接。可选自然语音包继续使用 [v0.1.5 的独立下载](https://github.com/Femad-6/deepseek-moonpet/releases/tag/v0.1.5)。
+推荐在 Harness 插件安装输入框填写 `dsh-moonpet@0.1.7`，或使用下方 npm 安装包链接。可选自然语音包继续使用 [v0.1.5 的独立下载](https://github.com/Femad-6/deepseek-moonpet/releases/tag/v0.1.5)。
 
 需要已安装且支持组合包插件的 DeepSeek Harness Desktop 或 Web。状态宠物不要求 API key；余额功能可使用 Harness 中已有的 DeepSeek 凭据。
 
 ### 插件市场安装
 
-在支持 npm 插件发现的市场中搜索 `dsh-moonpet`，确认版本为 **0.1.6** 或更新版本，安装并启用。如果没有搜索到，可刷新市场目录，或直接使用下方完整 npm 包名安装。市场索引可能未收录此包，npm 发布、镜像同步与市场目录更新也可能存在延迟。
+在支持 npm 插件发现的市场中搜索 `dsh-moonpet`，确认版本为 **0.1.7** 或更新版本，安装并启用。如果没有搜索到，可刷新市场目录，或直接使用下方完整 npm 包名安装。市场索引可能未收录此包，npm 发布、镜像同步与市场目录更新也可能存在延迟。
 
 ### 按 npm 包名安装
 
 在 Harness 的 **插件 → 添加插件** 中输入：
 
 ```text
-dsh-moonpet@0.1.6
+dsh-moonpet@0.1.7
 ```
 
 也可以在支持此命令的 Harness CLI 中安装：
 
 ```powershell
-dsh plugin --profile desktop add dsh-moonpet@0.1.6
+dsh plugin --profile desktop add dsh-moonpet@0.1.7
 ```
 
 Web 用户使用 `--profile web`。插件需要通过 Harness 的插件安装入口加载；普通项目中的 `npm install` 不会自动启用 Harness 插件。
@@ -61,10 +61,10 @@ Web 用户使用 `--profile web`。插件需要通过 Harness 的插件安装入
 也可以在插件安装输入框中填写 npm 官方安装包链接：
 
 ```text
-https://registry.npmjs.org/dsh-moonpet/-/dsh-moonpet-0.1.6.tgz
+https://registry.npmjs.org/dsh-moonpet/-/dsh-moonpet-0.1.7.tgz
 ```
 
-或者下载该安装包，在插件输入框中填写文件的绝对路径。本地打包文件名为 `dsh-moonpet-0.1.6.tgz`；[GitHub Releases](https://github.com/Femad-6/deepseek-moonpet/releases) 也是下载入口，请以各 Release 实际提供的版本与文件为准。
+或者下载该安装包，在插件输入框中填写文件的绝对路径。本地打包文件名为 `dsh-moonpet-0.1.7.tgz`；[GitHub Releases](https://github.com/Femad-6/deepseek-moonpet/releases) 也是下载入口，请以各 Release 实际提供的版本与文件为准。
 
 以上方式安装并启用后，完全退出再打开 Harness。Windows 需要从系统托盘退出；关闭窗口通常只是隐藏。安装成功后，在宠物右上角的月亮按钮里可以调整位置、缩放和「状态宠物」开关。
 

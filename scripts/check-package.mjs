@@ -6,7 +6,8 @@ import { spawnSync } from 'node:child_process'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const required=['package.json','cordis.patch.yml','README.md','LICENSE','THIRD_PARTY_NOTICES.md','assets/NOTICE.md','assets/icon.svg','lib/index.js','lib/client.js','lib/pet-state.js','assets/ui/dialog.png','assets/ui/dialog.json','assets/ui/dialog-blank.png','assets/ui/dialog-blank.json','assets/ui/settings.png','assets/ui/click.wav','assets/packs/moon/pack.json','assets/packs/moon/pet.json']
-required.push('lib/focus.js', 'lib/focus-client.js', 'lib/alert-player.js')
+required.push('lib/focus.js', 'lib/focus-client.js', 'lib/alert-player.js', 'lib/atomic-write.js')
+required.push('assets/ui/dialog-handdrawn.svg')
 for (const sound of ['bells', 'chime', 'wind', 'harp', 'water', 'piano', 'pulse', 'voice', 'soft', 'digital', 'triple']) required.push(`assets/alerts/${sound}.wav`)
 for (const character of ['whale', 'sakura', 'stella', 'yuzu']) {
   required.push(`assets/packs/${character}/pack.json`, `assets/packs/${character}/pet.json`)

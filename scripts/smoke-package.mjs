@@ -39,7 +39,7 @@ for(const [type,data,status,file] of [
   assert.equal(art.status,200);assert.equal(art.headers['Content-Type'],'image/png')
 }
 assert.equal((await read('/dsh-moonpet/api/turn',{host:'127.0.0.1',origin:'https://untrusted.invalid'})).status,403)
-for(const name of ['dialog.png','settings.png','click.wav'])assert.equal((await read(`/dsh-moonpet/asset/ui/${name}`)).status,200)
+for(const name of ['dialog.png','dialog-handdrawn.svg','settings.png','click.wav'])assert.equal((await read(`/dsh-moonpet/asset/ui/${name}`)).status,200)
 assert.equal(routes.has('/dsh-gal/api/turn'),false)
 await read('/dsh-moonpet/api/config',{},'PUT',JSON.stringify({spritePack:'whale'}))
 assert.equal((await json('/dsh-moonpet/api/bootstrap')).config.spritePack,'whale')

@@ -19,7 +19,7 @@ test('declared plugin icon fits the DSH 256 KiB metadata limit', () => {
 test('new package has its own namespace, MIT attribution and Chinese defaults', () => {
   const pkg = JSON.parse(read('package.json'))
   assert.equal(pkg.name, 'dsh-moonpet')
-  assert.equal(pkg.version, '0.1.6')
+  assert.equal(pkg.version, '0.1.7')
   assert.ok(read('cordis.patch.yml').includes('id: dsh-moonpet'))
   for (const name of fs.readdirSync(path.join(root,'lib'))) {
     assert.ok(!read(`lib/${name}`).includes('/dsh-gal'), name)

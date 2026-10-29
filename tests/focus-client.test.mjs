@@ -5,7 +5,7 @@ import vm from 'node:vm'
 import {createFocusTimer} from '../lib/focus.js'
 
 const source=fs.readFileSync(new URL('../lib/focus-client.js',import.meta.url),'utf8')
-function mount({beforeRequest=async()=>{}}={}){
+function mount({beforeRequest=async()=>{},beforeRead=async()=>{},signalTimeout=ms=>AbortSignal.timeout(ms)}={}){
  const elements=new Map(),events=new Map(),intervals=[],audios=[],requests=[]
  const element=key=>{
   if(!elements.has(key))elements.set(key,{
@@ -25,17 +25,17 @@ function mount({beforeRequest=async()=>{}}={}){
   dispatchEvent(event){events.get(event.type)?.(event)},
  }
  const context=vm.createContext({
-  window:{},document,
+  window:{},document,AbortSignal:{timeout:signalTimeout},
   Event:class{constructor(type){this.type=type}},
   CustomEvent:class{constructor(type,options){this.type=type;this.detail=options.detail}},
   Audio:class{constructor(){this.volume=1;audios.push(this)}play(){return Promise.resolve()}pause(){this.paused=true}},
   setInterval:fn=>intervals.push(fn),setTimeout:()=>1,clearTimeout(){},
   fetch:async(url,options)=>{
-   if(options){
-    const body=JSON.parse(options.body);requests.push(body);await beforeRequest(body)
+   if(options?.method==='POST'){
+    const body=JSON.parse(options.body);requests.push(body);await beforeRequest(body,options)
     if(body.action!=='preview')timer.command(body.action,body.settings)
-   }
-   return{json:async()=>({ok:true,focus:snapshot()})}
+   }else await beforeRead(options)
+   return{ok:true,json:async()=>({ok:true,focus:snapshot()})}
   },
  })
  vm.runInContext(source,context)
@@ -64,6 +64,38 @@ test('browser preview and alarms follow saved volume, live slider changes and mu
  app.setVolume(0)
  await app.poll()
  assert.equal(app.audios.at(-1).volume,0)
+})
+
+test('a timed out command releases the busy state so a user can retry',async()=>{
+ const controller=new AbortController()
+ let hang=true
+ const app=mount({signalTimeout:()=>hang?controller.signal:new AbortController().signal,
+  beforeRequest:(_body,options)=>hang?new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>reject(options.signal.reason),{once:true})):undefined})
+ await app.flush()
+ const errors=[]
+ app.document.addEventListener('moonpet:focus-error',event=>errors.push(event.detail))
+ const first=app.element('[data-focus="start"]').listeners.get('click')()
+ controller.abort(new DOMException('timeout','TimeoutError'))
+ await first
+ assert.equal(errors.length,1)
+ assert.match(errors[0].message,/超时/)
+ hang=false
+ await app.element('[data-focus="start"]').listeners.get('click')()
+ assert.equal(app.timer.snapshot().status,'running')
+})
+
+test('a timed out poll releases the polling guard and the next poll recovers',async()=>{
+ const controller=new AbortController()
+ let hang=true,reads=0
+ const app=mount({signalTimeout:()=>hang?controller.signal:new AbortController().signal,
+  beforeRead:options=>{reads++;return hang?new Promise((resolve,reject)=>options.signal.addEventListener('abort',()=>reject(options.signal.reason),{once:true})):undefined}})
+ await app.flush()
+ controller.abort(new DOMException('timeout','TimeoutError'))
+ await app.flush()
+ hang=false
+ await app.poll()
+ assert.equal(reads,2)
+ assert.equal(app.element('[data-focus="clock"]').textContent,'25:00')
 })
 
 test('a busy command reports a retryable start error instead of leaving the dialogue button disabled',async()=>{

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" preserveAspectRatio="none">
+  <!-- Original MoonPet drawing; visual reference: https://fukidesign.com/e1846/ -->
+  <path d="M155 10 C192 6 234 10 263 23 C294 35 311 57 313 82 C319 110 301 132 276 145 C252 159 222 167 195 168 C187 175 185 186 181 194 C173 187 165 180 154 172 C120 174 78 170 49 157 C19 143 8 121 8 96 C6 69 17 46 43 32 C73 15 115 8 155 10 Z"
+    fill="#fff8e9" stroke="#536478" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
